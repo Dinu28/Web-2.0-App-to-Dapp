@@ -2,6 +2,13 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const {save_user_information} = require('./models/server_db');
+const path = require('path');
+const publicPath = path.join(__dirname,'./public');
+
+/* handling all the parsing */
+app.use(bodyParser.json());
+app.use(express.static(publicPath));
+
 //Write to console
 console.log('Hello Web 2.0 App to Dapp');
 
@@ -10,8 +17,6 @@ app.get('/',(req,res) => {
   res.send("Hello Web 2.0 App to Dapp browser");
 });
 
-/* handling all the parsing */
-app.use(bodyParser.json());
 
 app.post('/',async (req,res) => {
   var email = req.body.email;
