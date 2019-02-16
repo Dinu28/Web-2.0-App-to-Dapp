@@ -28,6 +28,12 @@ app.post('/',async (req,res) => {
   //res.send({'amount' : amount, 'email' : email});
 });
 
+app.get('/get_total_amount', async (req,res)=>{
+  var result = await get_total_amount();
+  console.log(result);
+  res.send(result);
+});
+
 var server = app.listen(3000, function () {
    var host = server.address().address
    var port = server.address().port
